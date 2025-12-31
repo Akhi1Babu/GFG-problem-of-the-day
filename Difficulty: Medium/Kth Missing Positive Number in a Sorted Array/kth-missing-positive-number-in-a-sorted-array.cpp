@@ -2,19 +2,19 @@ class Solution {
   public:
     int kthMissing(vector<int> &arr, int k) {
         // code here
-        int curr = 1;
-        int i = 0;
-        int n = arr.size();
-
-        while (true) {
-            if (i < n && arr[i] == curr) {
-                i++; // number present
-            } else {
-                k--; // number missing
-                if (k == 0)
-                    return curr;
+        int n=arr.size();
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(arr[mid]-(mid+1)<k){
+                low=mid+1;
             }
-            curr++;
+            else{
+                high=mid-1;
+            }
+            
         }
+        return k+low;
     }
 };
